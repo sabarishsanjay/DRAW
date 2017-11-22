@@ -1,0 +1,243 @@
+@font-face {
+  font-family: 'Maven';
+  src:url('../Fonts/Maven/MavenPro-Regular.ttf') format('truetype');
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Ember';
+  src:url('../Fonts/Ember/Amazon-Ember-Regular.ttf') format('truetype');
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Ember-Light';
+  src:url('../Fonts/Ember/Amazon-Ember-Light.ttf') format('truetype');
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Ember-Thin';
+  src:url('../Fonts/Ember/Amazon-Ember-Thin.ttf') format('truetype');
+  font-style: normal;
+}
+*{
+  box-sizing: border-box;
+}
+
+body{
+  background-color: #f9f9f9;
+  margin: 0px;
+}
+body::-webkit-scrollbar{
+  width: 0px;
+}
+
+body::-webkit-scrollbar-track {
+
+}
+body::-webkit-scrollbar-thumb {
+
+}
+.bottombar{
+
+}
+.bottombar #animate{
+  font-family: 'Maven';
+  font-weight: lighter;
+  height: 40px;
+  width: 100px;
+  background-color: #000;
+  border: none;
+  box-shadow: 0px 15px 60px #efefef;
+  color: #fff;
+  outline: none;
+  bottom: 40px;
+  right: 30px;
+  font-size: 14px;
+  position: fixed;
+}
+.bottombar #clear{
+  font-family: 'Maven';
+  font-weight: lighter;
+  height: 40px;
+  width: 100px;
+  background-color: #000;
+  border: none;
+  box-shadow: 0px 15px 60px #efefef;
+  color: #fff;
+  outline: none;
+  bottom: 40px;
+  right: 150px;
+  font-size: 14px;
+  position: fixed;
+}
+@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #efefef;
+}
+.modal2 a{
+  color: #fff;
+}
+.modal2 a:hover{
+  color:#bada55;
+}
+button:focus {
+  outline: 0;
+}
+
+.radial {
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  left: 25px;
+  bottom: 40px;
+  cursor: grab;
+  font-size: 1px;
+  background: #000;
+  border-radius: 0;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15), 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+.radial a{
+  font-family: 'Ember-Thin';
+  font-weight: lighter;
+  color:#fff;
+  margin:15px;
+  cursor: default;
+  margin-top:50px !important;
+  padding-top: 50px !important;
+}
+
+.radial a:hover{
+  color:#fff;
+}
+.fab {
+  border: none;
+  color: white;
+  background-color: #000;
+  border-radius: 0;
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  left: 15px;
+  bottom:25px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15), 0px 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+.fab:hover {
+  background-color: #000;
+}
+
+#draggable{
+  -webkit-transition: all 0.02s linear;
+  -moz-transition: all 0.02s linear;
+  -ms-transition: all 0.02s linear;
+  -o-transition: all 0.02s linear;
+  transition: all 0.02s linear;
+}
+
+.radial.open #colorwheel{
+  display: block;
+}
+#fa-1, #fa-2, #fa-3 {
+  position: fixed;
+  background: transparent;
+  border: none;
+  right: 60px;
+  bottom: 57px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  color: white;
+}
+#fa-1:hover, #fa-2:hover, #fa-3:hover {
+  tansition-delay: 0s;
+  color: #000;
+}
+
+.radial {
+  height: 320px;
+  width: 300px;
+  left: 105px;
+  bottom: 40px;
+  font-size: 36px;
+
+}
+.radial.open .fab {
+  background-color: #000;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15), 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#colorwheel {
+  position: absolute;
+
+}
+
+span {
+  top:-230px;
+  cursor: crosshair;
+  position: absolute;
+  width: 60px;
+  left: 400px;
+  height: 5px;
+  -ms-transform-origin: -100px 50%;
+  -webkit-transform-origin: -100px 50%;
+  -moz-transform-origin: -100px 50%;
+  -o-transform-origin: -100px 50%;
+  transform-origin: -100px 50%;
+  opacity: 0.3;
+}
+
+span:hover, span:active {
+  opacity: 1;
+  border-top-right-radius: 0;
+  border-bottom-right-radius:0;
+  width:60px;
+
+
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 80%;
+    height: 5px;
+    margin: 20px;
+    background: #333333;
+    outline: none;
+    opacity: 1;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    cursor: grab;
+}
+
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    cursor: grab;
+}
+.ui.dropdown::selection{
+  background-color: transparent;
+}
+
+.menu img::selection{
+background-color: transparent;
+position: fixed;
+}

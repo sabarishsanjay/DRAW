@@ -1,0 +1,293 @@
+ <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>DRAW</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" type="image/png" href="./Group.png"/>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/dropdown.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/modal.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/dropdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/modal.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="./css/rangeslider.css">
+    <script src="./Script/sketchpad.js"></script>
+    <script src="./Script/rangeslider.js"></script>
+    <script type="text/javascript" src="./saved.json"></script>
+
+  </head>
+<body>
+  <style>
+*{
+  box-sizing: border-box;
+}
+
+body{
+  background-color: #f9f9f9;
+  margin: 0px;
+  overflow-x: scroll;
+}
+.menu{
+  outline-color: transparent;
+  z-index: 200;
+}
+.menu img{
+  padding-left: 10px;
+  padding-top: 5px;
+}
+.topbar{
+  position: fixed;
+  left:0;
+  top:0;
+  background-color: #fff;
+  box-shadow: 0px 15px 60px #efefef;
+  width: 100%;
+  height: 40px;
+  z-index: 500;
+}
+.ui .dropdown{
+  z-index: 200;
+}
+  </style>
+<canvas id="sketchpad" class="sketchpad" ondblclick="menu_toggle()"></canvas>
+<div class="topbar">
+  <div class="menu">
+  <div class="ui dropdown" style="font-family:'Ember-Light'; draggable:false; outline:none !important;tabindex:0;">
+    <img src="./logo.png" alt="" style="width:40%;height:40%;outline:none !important" tabindex="20" draggable="false" >
+    <i class="dropdown icon"></i>
+    <div class="menu">
+      <div class="item" id="new">New</div>
+      <div class="item" id="open">
+        Open
+      </div>
+      <div class="item" id="save">
+        Save
+      </div>
+      <div class="item">
+        Save as...
+      </div>
+      <div class="item" id="clearall">
+       Clear
+      </div>
+      <div class="item" id="clear">
+       Undo
+      </div>
+      <div class="item" id="animate">
+       Animate
+      </div>
+      </div>
+    </div>
+  </div></div>
+</div>
+<div class="ui basic modal modal1" style="background-color:#000; font-family:'Ember-Thin';padding:20px;">
+<div style="margin-top:20px;margin-left:20px; color  :#fff;"> What would you like to name your sketch?</div>
+<div class="content">
+<input type="text" style="background-color:#000;outline:none;border:none;font-size:32px;color:#bada55;font-family:'Ember-Thin';border-bottom: 1px solid #fff; width: 200px auto;padding:5px;">
+</div>
+</div>
+<div class="ui basic modal modal2" style="background-color:#000; font-family:'Ember-Thin';padding:30px">
+<div style=" color :#fff; font-size:16px">Here, are your previous sketches.</div>
+<div class="content" style="font-size:25px;padding-top:20px;padding-left:20px">
+  <ul style="list-style:none;" id="sketches">
+
+    <script>
+    /*var parser, xmlDoc;
+    var text = "<data><saved>" +
+    "<name>Sabarish Sanjay</name>" +
+    "</saved></data>";
+    parser = new DOMParser();
+    xmlDoc = parser.parseFromString(text,"text/xml");
+    document.getElementById("demo").innerHTML =
+    xmlDoc.getElementsByTagName("name")[0].childNodes[0].nodeValue;>*/
+
+    var items = [
+      {"SketchID":2,"Name":"Sabarish Sanjay","Data":""},
+      {"SketchID":1,"Name":"Sujuuu","Data":""}
+    ];
+ var fast=[];
+     $.each(items, function(i, item) {
+
+            fast.push('<li><a href=""id=' + item.SketchID + '">' + item.Name+ '</a></li>');
+            console.log(item);
+});
+     $('#sketches').append( fast.join(''));
+    </script>
+</ul>
+
+</div>
+</div>
+
+<div class="radial" id="draggable">
+  <div style="margin-top:100px;">
+  <a href="" id="color">Color</a></br><br>
+  <a href="" id="thik" style="padding-top:100px !important">Thickness</a></br>
+  <input type="range" class="slider"  min="1" max="100" value="2" id="thickness"><br><br>
+  <div id="thick" style="color:#fff;position:absolute;margin:20px;font-family:'Ember-Thin';font-size:100px"></div>
+  <div id="colour" style="color:#fff;position:absolute;margin:20px;font-family:'Ember-Thin';font-size:50px"></div>
+</div>
+<div id="colorwheel"></div>
+</div>
+<button class="fab">
+  <img src="./menu.svg" alt="" style="width:100%;height:100%;outline:none !important" tabindex="20" draggable="false" >
+</button>
+<script>
+var x= 4000;
+var y= 4000;
+var sketchpad = new Sketchpad({
+  element: '#sketchpad',
+  width: x,
+  height: y,
+  penSize:'3',
+});
+sketchpad.penSize=2;
+sketchpad.color="#333333";
+</script>
+<script>
+  $('#animate').on('click',function f(){
+  sketchpad.animate(10);
+  });
+  $('#clear').on('click', function c(){
+    sketchpad.undo();
+  });
+</script>
+<script>
+$('.ui.dropdown')
+  .dropdown();
+</script>
+<script>
+$('#save').on('click',function s(){
+sketchpad.reload();
+});
+</script>
+<script>
+  $('#clearall').on('click', function cl(){
+    sketchpad.clear();
+    localStorage.removeItem("j");
+  });
+</script>
+<script>
+$( document ).ready(function() {
+   var x = JSON.parse(localStorage.getItem('j'));
+   console.log(x);
+   sketchpad.reanimate(x.strokes,0);
+});
+</script>
+<script>
+$('#new').on('click', function(){
+$('.ui.basic.modal.modal1')
+  .modal('show');
+});
+</script>
+<script>
+$('#open').on('click', function(){
+$('.ui.basic.modal.modal2')
+  .modal('show');
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+  var t=sketchpad.penSize;
+  document.getElementById("thick").textContent=t;
+$('.fab').click (function(){
+  $('.radial').toggleClass('open');
+});
+});
+</script>
+<script type="text/javascript">
+$('canvas').on('mousedown mouseup', function mouseState(e) {
+  if (e.type == "mousedown") {
+      console.log("hold");
+  }
+});
+</script>
+<script type="text/javascript">
+for (var i=0; i<360; i++) {
+    var color = document.createElement("span")
+    color.setAttribute("id", "c" + i)
+    color.style.backgroundColor = "hsl(" + i + ", 100%, 50%)"
+    color.style.msTransform = "rotate(" + i + "deg)"
+    color.style.webkitTransform = "rotate(" + i + "deg)"
+    color.style.MozTransform = "rotate(" + i + "deg)"
+    color.style.OTransform = "rotate(" + i + "deg)"
+    color.style.transform = "rotate(" + i + "deg)"
+    document.getElementById('colorwheel').appendChild(color)
+  };
+</script>
+<script>
+$('#thickness').on('input',function(){
+   sketchpad.penSize=parseInt(this.value);
+   document.getElementById("thick").textContent=(this.value);
+ });
+</script>
+<script>
+$( function() {
+    $( "#draggable" ).draggable();
+  } );
+</script>
+<script>
+$(document).keypress(function(e){
+    if (e.which == 109){
+    var div = document.getElementsByClassName('radial')[0];
+    div.style.display = div.style.display == "none" ? "block" : "none";
+};
+if (e.which == 97){
+  sketchpad.animate(1);
+};
+if (e.which == 119) {
+  sketchpad.clear();
+};
+if (e.which == 122){
+  sketchpad.undo();
+}
+});
+</script>
+<script type="text/javascript">
+$('span').on('click',function() {
+var v = document.getElementById(this.id);
+sketchpad.color = v.style.backgroundColor;
+document.getElementById('color').style.color=v.style.backgroundColor;
+});
+</script>
+<script>
+var timeout_id = 0,
+    hold_time = 500,
+    hold_menu = $('.radial'),
+    hold_trigger = $('.topbar');
+hold_menu.hide();
+hold_trigger.mousedown(function() {
+    timeout_id = setTimeout(menu_toggle, hold_time);
+}).bind('mouseup mouseleave', function() {
+    clearTimeout(timeout_id);
+});
+function menu_toggle() {
+  var div = document.getElementsByClassName('radial')[0];
+  div.style.display = div.style.display == "none" ? "block" : "none";
+}
+</script>
+<script type="text/javascript">
+pagemap(document.querySelector('#map'), {
+  viewport: null,
+  styles: {
+      'canvas': rgba(0,0,0,0.08),
+      'h1,a': rgba(0,0,0,0.10),
+      'h2,h3,h4': rgba(0,0,0,0.08)
+  },
+  back: rgba(0,0,0,0.02),
+  view: rgba(0,0,0,0.05),
+  drag: rgba(0,0,0,0.10),
+  interval: null
+});
+</script>
+<script type="text/javascript">
+  $('.fab').on('click', function(){
+    var div = document.getElementsByClassName('radial')[0];
+    div.style.display = div.style.display == "none" ? "block" : "none";
+  });
+</script>
+</body>
+</html>
